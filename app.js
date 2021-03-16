@@ -1,8 +1,13 @@
 #!/usr/bin/env node
 
+let path = require('path');
+let edit = require(path.join( __dirname, 'edit.js' ) ),
+draw = require(path.join( __dirname, 'draw.js' ) )
+
 // what to do with a single byte buffer
 let processByte = (buff) => {
     console.log(buff);
+    edit.processBuff(buff);
 };
 
 // what to do with a buffer > 1 byte
@@ -82,3 +87,5 @@ process.stdin.on('data', (data) => {
         modes['notRaw'](data);
     }
 });
+
+draw.newScreen({}, process.stdout);
